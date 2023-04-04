@@ -27,18 +27,18 @@ This is the csv which we show as trial.csv in the brief usage section.
 CSV must contain columns named `uniqID`, `label_XXX`, and `split`. Additionally, if you use images as inputs, you need `imgpath`.
 
 Example of csv in the docs:
-| uniqID |             imgpath            |  label_FEV  | split |
-| -----  | ------------------------------ |  ---------  | ----- |
-| 0001   | materials/imgs/png_128/AAA.png |     3.2     | train |
-| 0002   | materials/imgs/png_128/BBB.png |     5.9     | val   |
-| 0003   | materials/imgs/png_128/CCC.png |     4.4     | train |
-| 0004   | materials/imgs/png_128/DDD.png |     3.2     | test  |
-| 0005   | materials/imgs/png_128/EEE.png |     4.6     | train |
-| 0006   | materials/imgs/png_128/FFF.png |     5.1     | train |
-| 0007   | materials/imgs/png_128/GGG.png |     2.9     | train |
-| 0008   | materials/imgs/png_128/HHH.png |     3.5     | val   |
-| 0009   | materials/imgs/png_128/III.png |     3.6     | test  |
-| :      | :                              | :           | :     |
+| uniqID |             imgpath            |  label_FEV  |  label_FEV  | split |
+| -----  | ------------------------------ |  ---------  |  ---------  | ----- |
+| 0001   | materials/imgs/png_128/AAA.png |     3.2     |     3.8     | train |
+| 0002   | materials/imgs/png_128/BBB.png |     5.9     |     5.8     | val   |
+| 0003   | materials/imgs/png_128/CCC.png |     4.4     |     5.2     | train |
+| 0004   | materials/imgs/png_128/DDD.png |     3.2     |     2.8     | test  |
+| 0005   | materials/imgs/png_128/EEE.png |     4.6     |     2.4     | train |
+| 0006   | materials/imgs/png_128/FFF.png |     5.1     |     3.3     | train |
+| 0007   | materials/imgs/png_128/GGG.png |     2.9     |     2.2     | train |
+| 0008   | materials/imgs/png_128/HHH.png |     3.5     |     4.1     | val   |
+| 0009   | materials/imgs/png_128/III.png |     3.6     |     3.5     | test  |
+| :      | :                              | :           | :           | :     |
 
 Note:
 - `uniqID` must be unique.
