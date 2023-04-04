@@ -8,14 +8,10 @@ Detailed model descriptions are provided in the article and the actual usage of 
 This is an AI model library used for single/multi-label and/or single/multi-class tasks with image and/or tabular data.
 Although this has a possibility to apply wide range of fields, we intended to use this model for medical imaging classification task.
 
-Additionally, we merged DeepSurv model [https://doi.org/10.1186/s12874-018-0482-1] into this model, which is a model that merges Cox proportional hazard model with deep learning. 
-It is a useful model for prognosis estimation by dealing with binary variables such as decease or not, and the period until the event. 
-The original DeepSurv model could only handle tabular data, but we have added images to it.
 
 Nervus can handle the following task:
 - Single/Multi-label-output classification with any of MLP, CNN, or MLP+CNN.
 - Single/Multi-label-output regression with any of MLP, CNN, or MLP+CNN.
-- DeepSurv with any of MLP, CNN, or MLP+CNN.
 
 # Dataset preparation
 ## Directory tree
@@ -31,18 +27,18 @@ This is the csv which we show as trial.csv in the brief usage section.
 CSV must contain columns named `uniqID`, `label_XXX`, and `split`. Additionally, if you use images as inputs, you need `imgpath`.
 
 Example of csv in the docs:
-| uniqID |             imgpath            | label_cancer | split |
-| -----  | ------------------------------ |  ---------   | ----- |
-| 0001   | materials/imgs/png_128/AAA.png | malignant    | train |
-| 0002   | materials/imgs/png_128/BBB.png | benign       | val   |
-| 0003   | materials/imgs/png_128/CCC.png | malignant    | train |
-| 0004   | materials/imgs/png_128/DDD.png | malignant    | test  |
-| 0005   | materials/imgs/png_128/EEE.png | benign       | train |
-| 0006   | materials/imgs/png_128/FFF.png | malignant    | train |
-| 0007   | materials/imgs/png_128/GGG.png | benign       | train |
-| 0008   | materials/imgs/png_128/HHH.png | benign       | val   |
-| 0009   | materials/imgs/png_128/III.png | malignant    | test  |
-| :      | :                              | :            | :     |
+| uniqID |             imgpath            |  label_FEV  | split |
+| -----  | ------------------------------ |  ---------  | ----- |
+| 0001   | materials/imgs/png_128/AAA.png |     3.2     | train |
+| 0002   | materials/imgs/png_128/BBB.png |     5.9     | val   |
+| 0003   | materials/imgs/png_128/CCC.png |     4.4     | train |
+| 0004   | materials/imgs/png_128/DDD.png |     3.2     | test  |
+| 0005   | materials/imgs/png_128/EEE.png |     4.6     | train |
+| 0006   | materials/imgs/png_128/FFF.png |     5.1     | train |
+| 0007   | materials/imgs/png_128/GGG.png |     2.9     | train |
+| 0008   | materials/imgs/png_128/HHH.png |     3.5     | val   |
+| 0009   | materials/imgs/png_128/III.png |     3.6     | test  |
+| :      | :                              | :           | :     |
 
 Note:
 - `uniqID` must be unique.
@@ -50,7 +46,6 @@ Note:
 - `label_XXX` should have a classification target. Any name is available. If you use more than two `label_XXX`, it will be automatically recognize multi-label classification and automatically prepare a proper number of classifiers (FCs).
 - `split` should have `train`, `val`, and `test`.
 - When you use inputs other than image, `input_XXX` is needed.
-- When you use deepsurv, `periods_XXX` is needed as well.
 
 
 ## Model development
@@ -72,7 +67,6 @@ For training and internal validation(tuning),
   - example:
     - classification: CEL ※CEL=CrossEntropyLoss
     - regression: MSE, RMSE, MAE
-    - deepsurv: NLL
 - optimizer: optimization algorithm
   - example: SGD, Adadelta, Adam, RMSprop
 - epochs: number of training with entire dataset
@@ -108,14 +102,9 @@ For test trained model,
 - csvpath: csv filepath name contains test data.
 - weight_dir: path to a directory which contains weights
 
-## For many trials
-If you need many trials, use `work_all.sh`. In this case, `parameter.csv` must be prepared. Examples are shown in this repository.
-
-
 # Tutorial
 Tutorial for Nervus library is available on Google Colaboratory.
 To do the tutorial, please visit this site [https://colab.research.google.com/drive/1710VAktDPVyPZdRo39UrSAtuVBYdFsCT].
-
 
 # CUDA VERSION
 CUDA Version = 11
